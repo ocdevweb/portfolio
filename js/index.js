@@ -27,6 +27,6 @@ window.addEventListener('load', event => {
 
             }
         })
-            .then((response) => console.log(response.json()))
+            .then(response => console.log(response))
     })
 })
