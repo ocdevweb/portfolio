@@ -60,6 +60,7 @@ body {
 
 /* Main Hero Section Styles */
 .hero { 
+    position: relative;
     background-image: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,0.6) 70%, rgba(255,255,255,0.8)),url('../img/development.svg'); 
     background-repeat: no-repeat; 
     background-size: 75%; 
@@ -72,6 +73,8 @@ body {
 } 
 
 .hero .intro { 
+    position: absolute;
+    top: 5em;
     text-align: center; 
     margin: 0 5rem; 
 } 
