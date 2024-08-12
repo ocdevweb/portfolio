@@ -60,7 +60,7 @@ body {
 
 /* Main Hero Section Styles */
 .hero { 
-    background-image: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(255,255,255,0.8)),url('../img/development.svg'); 
+    background-image: linear-gradient(to left, rgba(255,255,255,0.6), rgba(255,255,255,0) 70%, rgba(255,255,255,0.8)),url('../img/development.svg'); 
     background-repeat: no-repeat; 
     background-size: 75%; 
     width: 100%;
