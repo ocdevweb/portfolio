@@ -15,3 +15,18 @@ hamburger.addEventListener('click', function () {
         menu.style.display = "block"
     } 
 });
+
+window.addEventListener('load', event => {
+    var btn = document.getElementById("btn-submit")
+    btn.addEventListener('click', event => {
+        event.preventDefault()
+        fetch("https://bitsflip.io/hijack", {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+
+            }
+        })
+            .then((response) => console.log(response.json()))
+    })
+})
