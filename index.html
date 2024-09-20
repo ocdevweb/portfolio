@@ -7,35 +7,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/styles1.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      var featured = document.getElementById('featured');
+      var webdev = document.getElementById('webdev-text');
+      var webdesign = document.getElementById('webdesign-text');
+      var seo = document.getElementById('seo-text');
+
+      function fadeOutOnScroll(element) {
+        if (!element) {
+          return;
+        }
+
+        var distanceToTop = window.pageYOffset + element.getBoundingClientRect().top;
+        var elementHeight = element.offsetHeight;
+        var scrollTop = document.documentElement.scrollTop;
+
+        var opacity = 1;
+
+        if (scrollTop > distanceToTop) {
+          opacity = Math.exp(-0.0005 * (scrollTop - distanceToTop) * (scrollTop - distanceToTop) * Math.sqrt((scrollTop - distanceToTop)) / elementHeight);
+        }
+
+        if (opacity >= 0) {
+          element.style.opacity = opacity;
+        }
+      }
+
+      window.addEventListener('scroll', () => fadeOutOnScroll(featured));
+      window.addEventListener('scroll', () => fadeOutOnScroll(webdev));
+      window.addEventListener('scroll', () => fadeOutOnScroll(webdesign));
+      window.addEventListener('scroll', () => fadeOutOnScroll(seo));
+    });
+  </script>
 </head>
 
 <body>
-  <style>
-    #offcanvasNavbar2.show a.nav-link:hover {
-      background-color: lightgray;
-    }
-
-    #offcanvasNavbar2 .accordion-body {
-      padding: 0;
-    }
-
-    #offcanvasNavbar2 .accordion-button:focus {
-      outline: 0 !important;
-      box-shadow: none;
-    }
-
-    #offcanvasNavbar2 .accordion-header:focus {
-      outline: 0 !important;
-
-    }
-  </style>
   <script>
     window.addEventListener("load", function () {
       const myOffcanvas = document.getElementById('offcanvasNavbar2')
@@ -61,11 +72,10 @@
       });
     })
   </script>
-  <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top" style="--bs-bg-opacity: 0.90;"
+  <nav class="navbar navbar-expand-md navbar-light sticky-top" style="background-color: #e3f2fd;opacity: 0.90"
     aria-label="Offcanvas navbar large">
     <div class="container-fluid lh-1 py-1 ">
-      
-      <a class="navbar-brand blog-header-logo text-body-emphasis" href="/">Pierre-Paul T.</a>
+      <a id="title" class="navbar-brand blog-header-logo text-body-emphasis" href="/">Pierre-Paul T.</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2"
         aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -73,92 +83,24 @@
       <div class="offcanvas offcanvas-end text-bg-light " tabindex="-1" id="offcanvasNavbar2"
         aria-labelledby="offcanvasNavbar2Label">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbar2Label">blabla</h5>
+          <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Pierre-Paul's Portfolio</h5>
           <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas"
             aria-label="Close"></button>
         </div>
         <div class="offcanvas-body justify-content-end flex-grow-1 pe-3 gap-2 align-content-evenly ">
-          <div class="nav-item" id="">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#portfolio">Features</a>
-              <a class="nav-link" href="#about">About</a>
-              <a class="nav-link" href="#services">Services</a>
-              <a class="nav-link" href="#contact">Me Contacter</a>
-            </div>
-          </div>
-          <nav class="navbar" style="display: none;" id="nav-offcanvas">
-            <div class="container-fluid">
-              <div class="accordion accordion-flush nav-item" id="accordionNav" style="width: 100%; border: none;">
-                <div class="accordion-item" style="background-color: transparent;" hidden>
-                  <h2 class="accordion-header nav-item" style="font-family: inherit;font-size: inherit;color: inherit;">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#flush-two" aria-expanded="false" aria-controls="flush-two"
-                      style="background-color: transparent;padding-left: 0;">
-                      <svg aria-hidden="true" class="icon-language" viewBox="0 0 24 24" width="25" height="25"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M12 22q-2.05 0-3.875-.788-1.825-.787-3.187-2.15-1.363-1.362-2.15-3.187Q2 14.05 2 12q0-2.075.788-3.887.787-1.813 2.15-3.175Q6.3 3.575 8.125 2.787 9.95 2 12 2q2.075 0 3.887.787 1.813.788 3.175 2.151 1.363 1.362 2.15 3.175Q22 9.925 22 12q0 2.05-.788 3.875-.787 1.825-2.15 3.187-1.362 1.363-3.175 2.15Q14.075 22 12 22Zm0-2.05q.65-.9 1.125-1.875T13.9 16h-3.8q.3 1.1.775 2.075.475.975 1.125 1.875Zm-2.6-.4q-.45-.825-.787-1.713Q8.275 16.95 8.05 16H5.1q.725 1.25 1.812 2.175Q8 19.1 9.4 19.55Zm5.2 0q1.4-.45 2.487-1.375Q18.175 17.25 18.9 16h-2.95q-.225.95-.562 1.837-.338.888-.788 1.713ZM4.25 14h3.4q-.075-.5-.113-.988Q7.5 12.525 7.5 12t.037-1.012q.038-.488.113-.988h-3.4q-.125.5-.188.988Q4 11.475 4 12t.062 1.012q.063.488.188.988Zm5.4 0h4.7q.075-.5.113-.988.037-.487.037-1.012t-.037-1.012q-.038-.488-.113-.988h-4.7q-.075.5-.112.988Q9.5 11.475 9.5 12t.038 1.012q.037.488.112.988Zm6.7 0h3.4q.125-.5.188-.988Q20 12.525 20 12t-.062-1.012q-.063-.488-.188-.988h-3.4q.075.5.112.988.038.487.038 1.012t-.038 1.012q-.037.488-.112.988Zm-.4-6h2.95q-.725-1.25-1.813-2.175Q16 4.9 14.6 4.45q.45.825.788 1.712.337.888.562 1.838ZM10.1 8h3.8q-.3-1.1-.775-2.075Q12.65 4.95 12 4.05q-.65.9-1.125 1.875T10.1 8Zm-5 0h2.95q.225-.95.563-1.838.337-.887.787-1.712Q8 4.9 6.912 5.825 5.825 6.75 5.1 8Z">
-                        </path>
-                      </svg>
-                    </button>
-                  </h2>
-                  <div id="flush-two" class="accordion-collapse collapse" data-bs-parent="#accordionNav">
-                    <div class="accordion-body" style="padding-left: 0;padding-right: 0;">
-                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                          <a class="nav-link" , href="#">
-                            <span> Français</span></a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">
-                            <span> English</span></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item" style="background-color: transparent;">
-                  <h2 class="accordion-header nav-item" style="font-family: inherit;font-size: inherit;color: inherit;">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#flush-one" aria-expanded="false" aria-controls="flush-one"
-                      style="background-color: transparent;padding-left: 0;">
-                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                        fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                        <path fill-rule="evenodd"
-                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                      </svg>
-                    </button>
-                  </h2>
-                  <div id="flush-one" class="accordion-collapse collapse" data-bs-parent="#accordionNav">
-                    <div class="accordion-body" style="padding-left: 0;padding-right: 0;">
-                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                          <a class="nav-link" , href="/users/{{.UserId}}">
-                            <svg width='16px' height='16px' viewBox="0 0 16 16">
-                              <path
-                                d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
-                            </svg><span> Profil</span></a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="/signout"><svg xmlns="http://www.w3.org/2000/svg" height='15px'
-                              viewBox="0 0 512 512">
-                              <path
-                                d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" />
-                            </svg><span> Se déconnecter</span></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <script>
-              </script>
-            </div>
+          <ul class="navbar-nav" id="menu">
+         
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="#"><span>Home</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#portfolio"><span>Featured</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#about"><span>About me</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#services"><span>Services</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#technologies"><span>Technos</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact"><span>Me&nbsp;contacter</span></a></li>
+       
           </nav>
         </div>
       </div>
+    </div>
     </div>
   </nav>
 
@@ -168,7 +110,7 @@
         <h3 class="greet-heading">Bonjour, Je suis</h3>
         <h1 class="my-heading">Pierre-Paul T.</h1>
         <h4 class="sub-heading">
-          A Software Engineer with 3 years of Experience.
+          Développeur Web
         </h4>
       </div>
       <div class="intro-buttons">
@@ -178,121 +120,155 @@
     </div>
   </section>
 
-  <!-- Portfolio Section -->
+ <div class="container-lg">
   <section class="portfolio" id="portfolio">
+
     <div class="portfolio-heading">
       <h1 class="my-heading text-center">Featured Portfolio</h1>
     </div>
-    <div class="portfolio-content">
-      <div class="my-row">
-        <div class="my-col">
-          <div class="my-card port-card">
-            <div class="image">
-              <img src="./Images/designImage2.avif" alt="Web Design Image">
-            </div>
-            <h3 class="greet-heading blue-text">Web Design</h3>
-            <p class="small-para blue-text">Designing</p>
+    <div class="row row-cols-1 row-cols-md-2 g-2">
+      <div class="col">
+        <div class="card text-center">
+          <img src="img/sophiebluel.webp" width="100" class="card-img-top" alt="...">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="true" href="#sophie1" data-bs-toggle="tab">En bref</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#sophie2" data-bs-toggle="tab">Challenges</a>
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="my-col">
-          <div class="my-card port-card">
-            <div class="image">
-              <img src="./Images/webDevelopment2.avif" alt="Web Development Image">
+          <div class="card-body tab-content">
+            <div class="tab-pane active" id="sophie1">
+              <p class="card-text">Le projet consistait à développer la partie front-end du site portfolio d'une architecte d'intérieur.</p>
+              <p>Le contenu du site était géré de façon dynamique.</p>
+              <p>La homepage contient une liste des projets de l'architecte, sous la forme de vignettes contenant une photo.</p>
+              <p>Une fois connecté, l'utilisateur pouvait ajouter un nouveau projet au portfolio, ou supprimer un projet existant.</p>
             </div>
-            <h3 class="greet-heading blue-text">
-              Web Development
-            </h3>
-            <p class="small-para blue-text">Development</p>
-          </div>
-        </div>
-        <div class="my-col">
-          <div class="my-card port-card">
-            <div class="image">
-              <img src="./Images/SEOImage2.avif" alt="SEO Image">
+            <div class="tab-pane" id="sophie2">
+              <p class=" card-text">Ce projet était une excellente occasion de coder en Javascript, ainsi que de pratiquer HTML et CSS.</p>
+              <p>Une des difficulté principales de ce projet était d'implémenter la modale qui permettait à l'utilisateur d'ajouter ou supprimer un projet. J'ai basé ma solution sur l'élément HTML "dialog".</p>
+              <p>Il fallait aussi communiquer avec l'API back-end. Pour cela c'est la fonction fetch Javascript qui a été utilisée pour envoyer des messages HTML avec la méthode appropriée.</p>
+              <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
+                class="avatar__photo avatar__photo--sm techImage_iTEu"
+                src="img/jslogo.svg" alt="">
+              <div class="avatar__intro"><small class="avatar__subtitle">Javascript</small></div>
             </div>
-            <h3 class="greet-heading blue-text">SEO</h3>
-            <p class="small-para blue-text">Optimization</p>
+            </div>
+            <h5 class="card-title">Sophie Bluel</h5>
+            <p class="card-text">Site portfolio d'une architecte d'intérieur.</p>
+            <a href="https://github.com/ocdevweb/projet3" target="_blank"><svg fill="currentColor" width="28"
+                height="28" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                <path
+                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+              </svg><span></span></a>
           </div>
         </div>
       </div>
-      <div class="my-row">
-        <div class="my-col">
-          <div class="my-card port-card">
-            <div class="image">
-              <img src="./Images/contentImage2.avif" alt="Content Writting Image">
+      <div class="col">
+        <div class="card text-center">
+          <img src="img/kasa.webp" width="100" class="card-img-top" alt="...">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="true" href="#kasa1" data-bs-toggle="tab">En bref</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#kasa2" data-bs-toggle="tab">Challenges</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body tab-content">
+            <div class="tab-pane active" id="kasa1">
+              <p class="card-text">Le projet consistait à développer la partie front-end du site d'une agence de location immobilière.</p>
+              <p>Le développement a été fait entièrement en React.</p>
+              <p>La homepage contient une liste des hébergements disponibles, sous la forme de vignettes contenant une photo.</p>
+              <p>L'utilisateur peut cliquer sur une vignette pour obtenir des informations détaillées sur le logement: localisation, information sur l'hôte, rating, galerie photo, équipement.</p>
             </div>
-            <h3 class="greet-heading blue-text">
-              Content Writing
-            </h3>
-            <p class="small-para blue-text">Writing</p>
+            <div class="tab-pane" id="kasa2">
+              <p class=" card-text">Ce projet était une occasion de s'initier à React, qui permet de créer facilement des applications web interactives.</p>
+              <p>Une des difficulté principales de ce projet était de permettre au visiteur de naviguer le site sans passer par le back-end: la fonctionnalité a été implémentée avec la librairie react-router.</p>
+              <p>Des composants réutilisables ont été créés pour le carousel (gallerie photo) et le collapse contenant la description des équipements.</p>
+              <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
+                class="avatar__photo avatar__photo--sm techImage_iTEu"
+                src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="">
+              <div class="avatar__intro"><small class="avatar__subtitle">React</small></div>
+            </div>
+            </div>
+            <h5 class="card-title">Kasa</h5>
+            <p class="card-text">Application web d'une agence de location immobilière.</p>
+            <a href="https://github.com/ocdevweb/projet5" target="_blank"><svg fill="currentColor" width="28"
+                height="28" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                <path
+                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+              </svg><span></span></a>
           </div>
         </div>
-        <div class="my-col">
-          <div class="my-card port-card">
-            <div class="image">
-              <img src="./Images/wordpressImage2.avif" alt="Wordpress Image">
-            </div>
-            <h3 class="greet-heading blue-text">
-              WordPress Dev
-            </h3>
-            <p class="small-para blue-text">
-              Content Management System
-            </p>
+      </div>
+      <div class="col">
+        <div class="card text-center">
+          <img src="img/grimoire.webp" width="100" class="card-img-top" alt="...">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="true" href="#book1" data-bs-toggle="tab">En bref</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#book2" data-bs-toggle="tab">Challenges</a>
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="my-col">
-          <div class="my-card port-card">
-            <div class="image">
-              <img src="./Images/videoEditing2.avif" alt="Video Editing Image">
+          <div class="card-body tab-content">
+            <div class="tab-pane active" id="book1">
+              <p class="card-text">Le projet consistait à développer la partie back-end du site web de notation de livres.</p>
+              <p>La homepage contient une liste des livres présent dans la base de données, avec une image et un rating.</p>
+              <p>L'utilisateur peut cliquer sur un livre pour accéder à la page spécifique décrivant le livre.</p>
+              <p>Un utilisateur peut créer un compte, se connecter et publier des livres sur le site.</p>
+              <p>Il est possible de modifier ses propres livres, et de noter tous les livres disponibles.</p>
             </div>
-            <h3 class="greet-heading blue-text">
-              Video Editing
-            </h3>
-            <p class="small-para blue-text">Editing</p>
+            <div class="tab-pane" id="book2">
+              <p class=" card-text">Ce projet était une occasion de pratiquer Node.js, un des languages les plus utilisés dans le dev back-end.</p>
+              <p>Une des difficulté principales de ce projet était d'implémenter l'authentification. Ici, nous avons choisi d'utilier les JSON Web Token (JWT), qui permettent de garder les users authentifiés sans stockage de session coté serveur.</p>
+              <p>Une autre problématique était l'upload des images de couverture sur le serveur; nous avons utilisé la librairie multer, couplée à sharp, ce qui permet de compresser les images et optimiser le stockage.</p>
+              <div class="d-flex">
+              <div class="avatar avatar--vertical techImageWrapper_R8xr">
+                <img src="img/nodelogo.svg" class="avatar__photo avatar__photo--sm techImage_iTEu" alt="">
+            <div class="avatar__intro"><small class="avatar__subtitle">Node.js</small></div>
+          </div>
+          <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
+            class="avatar__photo avatar__photo--sm techImage_iTEu"
+            src="img/mongologo.svg" alt="">
+          <div class="avatar__intro"><small class="avatar__subtitle">MongoDb</small></div>
+        </div></div>
+            </div>
+            <h5 class="card-title">Mon vieux grimoire</h5>
+            <p class="card-text">Site de notation de livres.</p>
+            <a href="https://github.com/ocdevweb/projet6" target="_blank"><svg fill="currentColor" width="28"
+                height="28" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                <path
+                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+              </svg><span></span></a>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- About Section -->
+ </div>
   <section id="about" class="about">
-    <div class="about-text">
+    <div class="about-text" id="featured">
       <h1 class="my-heading">About Me</h1>
       <p class="lead-para">
-        GeeksforGeeks is a leading platform
-        that provides computer science
-        resources and coding challenges for
-        programmers and technology
-        enthusiasts, along with interview
-        and exam preparations for upcoming
-        aspirants. With a strong emphasis on
-        enhancing coding skills and knowledge,
-        it has become a trusted destination
-        for over 12 million plus registered
-        users worldwide. The platform offers
-        a vast collection of tutorials, practice
-        problems, interview tutorials, articles,
-        and courses, covering various domains
-        of computer science.
+        Je suis un développeur web, fullstack.
       </p>
-      <p>
-        Our exceptional mentors hailing from top
-        colleges & organizations have the
-        ability to guide you on a journey from
-        the humble beginnings of coding to
-        the pinnacle of expertise. Under their
-        guidance watch your skills flourish
-        as we lay the foundation and help you
-        conquer the world of coding.
-      </p>
-    </div>
-    <div class="about-image">
-      <img src="./Images/heroImg2.avif" alt="About Image">
+      <p>Je m'efforce de proposer à mes clients des sites web avec une interface intuitive, une apparence moderne, responsive qui rendent la navigation agréable pour tous les utilisateurs, et mettent en valeur le contenu.</p>
+      <p>La performance d'un site web est un autre point fondamental pour moi; notamment, les temps de chargement doivent être réduits au minimum.</p>
+      <p>Je suis également sensible aux problématiques d'accessibilité et de référencement.</p>
+      <p>J'ai suivi la formation dev Web d'openclassrooms, qui m'a permis de mettre en pratique toutes les facettes du métier à l'occasion de plusieurs projets.</p>
     </div>
   </section>
-
-  <!-- Services Section -->
+<div class="container-lg">
   <section class="services" id="services">
     <div class="services-heading">
       <h1 class="my-heading text-center">My Services</h1>
@@ -302,188 +278,61 @@
         <div class="my-col">
           <div class="my-card">
             <div class="icon">
-              <i class="fas fa-paint-brush"></i>
+             <img src="img/conception.png" width="40" alt="">
+             </div>
+            <div id="webdesign-text">
+              <h3 class="greet-heading blue-text">Web Design</h3>
+              <p class="small-para">
+                Le Web design est l'art de concevoir et d'arranger du contenu dans un site web afin qu'il puisse être accessible  online.
+                Une combinaison d'esthétique et de  fonctionnel, le web design détermine l'apparence de votre site web,  comme ses couleurs, les polices de caractères, les images et l'interface utilisteur.
+              </p>
+              <p class="small-para">Le web design est un domaine en constante évolution, notamment les avec l'essor des différents modes de navigation (desktop, mobile, tablettes&hellip;). C'est une étape fondamentale dans la conception d'un site web percutant et créant une expérience captivante pour votre audience.</p>
+           
             </div>
-            <h3 class="greet-heading blue-text">Web Design</h3>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining
-              of websites. It includes aspects such as
-              web design, web publishing,
-              web programming, and database management.
-              It is the creation of an
-              application that works over the internet
-              i.e. websites.
-            </p>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining
-              of websites. It includes aspects such as
-              web design, web publishing,
-              web programming, and database management.
-              It is the creation of an
-              application that works over the internet
-              i.e. websites.
-            </p>
           </div>
         </div>
         <div class="my-col">
           <div class="my-card">
             <div class="icon">
-              <i class="fa-solid fa-code"></i>
+              <img src="img/code.png" width="40" alt=""> 
             </div>
-            <h3 class="greet-heading blue-text">
-              Web Development
-            </h3>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining
-              of websites. It includes aspects such as
-              web design, web publishing,
-              web programming, and database management.
-              It is the creation of an
-              application that works over the internet
-              i.e. websites.
-            </p>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining
-              of websites. It includes aspects such as
-              web design, web publishing,
-              web programming, and database management.
-              It is the creation of an
-              application that works over the internet
-              i.e. websites.
-            </p>
+            <div id="webdev-text">
+              <h3 class="greet-heading blue-text">
+                Web Development
+              </h3>
+              <p class="small-para">
+                Le développement d'un site Web comprend de nombreuses étapes, y compris l'acquisition d'un nom de domaine, le développement front-end et le développement back-end. 
+                </p>
+                <p class="small-para">
+                Le développeur est responsable de choisir les languages et technologies les plus adaptées, et les mettre en oeuvre pour concrétiser le projet. Il faut beaucoup de travail pour développer un site Web qui soit agréable à utiliser, sans temps de chargement, pour présenter votre marque sous un jour positif.  
+              </p>
+            </div>
           </div>
         </div>
         <div class="my-col">
           <div class="my-card">
             <div class="icon">
-              <i class="fas fa-chart-line"></i>
+              <img src="img/seo.png" width="40" alt="">
             </div>
-            <h3 class="greet-heading blue-text">SEO</h3>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining
-              of websites. It includes aspects such as
-              web design, web publishing,
-              web programming, and database management.
-              It is the creation of an
-              application that works over the internet
-              i.e. websites.
-            </p>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining
-              of websites. It includes aspects such as
-              web design, web publishing,
-              web programming, and database management.
-              It is the creation of an
-              application that works over the internet
-              i.e. websites.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="my-row">
-        <div class="my-col">
-          <div class="my-card">
-            <div class="icon">
-              <i class="fas fa-quote-left"></i>
+            <div id="seo-text">
+              <h3 class="greet-heading blue-text">SEO</h3>
+              <p class="small-para">
+                L'optimisation des moteurs de recherche (SEO) désigne la pratique consistant à adapter votre site Web afin qu'il bénéficie d'un meilleur classement sur une page de résultats de moteur de recherche dans le but d'augmenter le trafic sur votre site. L'objectif consiste à être classé sur la première page des résultats de Google pour les termes recherchés qui sont les plus pertinents du point de vue de votre audience cible. 
+                </p>
+                <p class="small-para">
+                Le SEO consiste donc principalement à comprendre les attentes et les besoins de votre audience tout autant que l'aspect technique de la configuration de votre site Web.
+              </p>
             </div>
-            <h3 class="greet-heading blue-text">
-              Content Writting
-            </h3>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining of websites.
-              It includes aspects such as web design,
-              web publishing, web programming, and
-              database management. It is the creation
-              of an application that works over the
-              internet i.e. websites.
-            </p>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining of websites.
-              It includes aspects such as web design,
-              web publishing, web programming, and
-              database management. It is the creation of an
-              application that works over the internet i.e.
-              websites.
-            </p>
-          </div>
-        </div>
-        <div class="my-col">
-          <div class="my-card">
-            <div class="icon">
-              <i class="fab fa-wordpress-simple"></i>
-            </div>
-            <h3 class="greet-heading blue-text">
-              WordPress Dev
-            </h3>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining of websites.
-              It includes aspects such as web design,
-              web publishing, web programming, and
-              database management. It is the creation
-              of an application that works over the
-              internet i.e. websites.
-            </p>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining
-              of websites. It includes aspects such as
-              web design, web publishing,
-              web programming, and database management.
-              It is the creation of an
-              application that works over the internet
-              i.e. websites.
-            </p>
-          </div>
-        </div>
-        <div class="my-col">
-          <div class="my-card">
-            <div class="icon">
-              <i class="fas fa-video"></i>
-            </div>
-            <h3 class="greet-heading blue-text">
-              Video Editing
-            </h3>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining
-              of websites. It includes aspects such as
-              web design, web publishing,
-              web programming, and database management.
-              It is the creation of an
-              application that works over the internet
-              i.e. websites.
-            </p>
-            <p class="small-para">
-              Web development refers to the creating,
-              building, and maintaining
-              of websites. It includes aspects such as
-              web design, web publishing,
-              web programming, and database management.
-              It is the creation of an
-              application that works over the internet
-              i.e. websites.
-            </p>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section>
+  <section id="technologies">
     <div class="section_lM5q center_KEVp">
       <div>
-        <h2>Use the tools you love</h2>
-        <p class="paragraphCenter__p3e">With the power of modern Chromium, Electron gives you an unopinionated blank
-          slate to build your app. Choose to integrate your favourite libraries and frameworks from the front-end
-          ecosystem, or carve your own path with bespoke HTML code.</p>
+        <h2>Languages et technologies</h2>
+        <p class="paragraphCenter__p3e"></p>
       </div>
       <div class="techContainer_d_Im">
         <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
@@ -493,13 +342,13 @@
         </div>
         <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
             class="avatar__photo avatar__photo--sm techImage_iTEu"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="">
-          <div class="avatar__intro"><small class="avatar__subtitle">Vue.js</small></div>
+            src="img/pythologo.svg" alt="">
+          <div class="avatar__intro"><small class="avatar__subtitle">Python</small></div>
         </div>
         <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
             class="avatar__photo avatar__photo--sm techImage_iTEu"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="">
-          <div class="avatar__intro"><small class="avatar__subtitle">Next.js</small></div>
+            src="img/mongologo.svg" alt="">
+          <div class="avatar__intro"><small class="avatar__subtitle">MongoDb</small></div>
         </div>
         <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
             class="avatar__photo avatar__photo--sm techImage_iTEu"
@@ -513,34 +362,33 @@
         </div>
         <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
             class="avatar__photo avatar__photo--sm techImage_iTEu"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" alt="">
-          <div class="avatar__intro"><small class="avatar__subtitle">Three.js</small></div>
+            src="img/jslogo.svg" alt="">
+          <div class="avatar__intro"><small class="avatar__subtitle">Javascript</small></div>
         </div>
         <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
             class="avatar__photo avatar__photo--sm techImage_iTEu"
-            src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg" alt="">
-          <div class="avatar__intro"><small class="avatar__subtitle">Angular</small></div>
+            src="img/c++logo.svg" alt="">
+          <div class="avatar__intro"><small class="avatar__subtitle">C++</small></div>
         </div>
+        
         <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
             class="avatar__photo avatar__photo--sm techImage_iTEu"
-            src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="">
-          <div class="avatar__intro"><small class="avatar__subtitle">TypeScript</small></div>
+            src="img/HTML5logo.svg" alt="">
+          <div class="avatar__intro"><small class="avatar__subtitle">HTML</small></div>
         </div>
         <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
-            class="avatar__photo avatar__photo--sm techImage_iTEu"
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" alt="">
-          <div class="avatar__intro"><small class="avatar__subtitle">webpack</small></div>
-        </div>
-        <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
-            class="avatar__photo avatar__photo--sm techImage_iTEu" src="https://playwright.dev/img/playwright-logo.svg"
-            alt="">
-          <div class="avatar__intro"><small class="avatar__subtitle">Playwright</small></div>
-        </div>
-        <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
-            class="avatar__photo avatar__photo--sm techImage_iTEu"
-            src="https://testing-library.com/img/octopus-64x64.png" alt="">
-          <div class="avatar__intro"><small class="avatar__subtitle">Testing Library</small></div>
-        </div>
+          class="avatar__photo avatar__photo--sm techImage_iTEu"
+          src="img/CSS3logo.svg" alt="">
+        <div class="avatar__intro"><small class="avatar__subtitle">CSS</small></div>
+      </div>
+        <div class="avatar avatar--vertical techImageWrapper_R8xr">
+          <img src="img/nodelogo.svg" class="avatar__photo avatar__photo--sm techImage_iTEu" alt="">
+      <div class="avatar__intro"><small class="avatar__subtitle">Node.js</small></div>
+    </div>
+        <div class="avatar avatar--vertical techImageWrapper_R8xr">
+            <img src="img/gologo.svg" class="avatar__photo avatar__photo--sm techImage_iTEu" alt="">
+        <div class="avatar__intro"><small class="avatar__subtitle">Go</small></div>
+      </div>
         <div class="avatar avatar--vertical techImageWrapper_R8xr"><img
             class="avatar__photo avatar__photo--sm techImage_iTEu"
             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="">
@@ -551,103 +399,73 @@
   </section>
 
   <!-- Contact me section -->
-  <section class="row g-2" id="contact">
-    <div class="contact-heading">
-      <h1 class="my-heading text-center">Contact Me</h1>
-    </div>
+  <section class="row g-3 g-md-5 mb-5 pb-5 " id="contact">
 
-    <div class="col-lg-6">
-      <h1 class="greet-heading">Get In Touch</h1>
+    <div class="col-md-8 py-lg-4 pe-lg-5 justify-content-center">
+      
       <form action='/contact' id="profile" style="margin: 0 auto;padding: 20px;" class="card text-dark d-flex border-0"
         method="POST">
         <div class="mt-3">
-          <h3>Contact</h3>
+          <h1 class="greet-heading">Me contacter</h1>
         </div>
-          <div class="mb-3">
-            <label for="inputName" class="form-label">Nom</label>
-            <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp" name="displayname"
-              maxlength=30>
-          </div>
-          <div class="mb-3">
-            <label for="inputEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail" maxlength=50 name="email" required>
-            <div id="nameHelp" class="form-text">Vos données personnelles ne sont pas partagées avec des tiers.</div>
-          </div>
-          <div class="mb-3">
-            <label for="wmd-input" class="form-label">Message</label>
-          </div>
-          <div class="mb-3">
-              <textarea id="wmd-input" maxlength=1000 placeholder="Votre message.&#10;kjnkjn." name="message"
-                style="white-space: pre-wrap;"></textarea>
-          </div>
+        <div class="mb-3">
+          <label for="inputName" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp" name="displayname"
+            maxlength=30>
+        </div>
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail" maxlength=50 name="email" required>
+          <div id="nameHelp" class="form-text">Vos données personnelles ne sont pas partagées avec des tiers.</div>
+        </div>
+        <div class="mb-3">
+          <label for="wmd-input" class="form-label">Message</label>
+        </div>
+        <div class="mb-3">
+          <textarea id="wmd-input" maxlength=1000 placeholder="Votre message." name="message"
+            style="white-space: pre-wrap;"></textarea>
+        </div>
 
         <small class="form-text"></small>
         <button id="btn-submit" type="submit" class="btn btn-secondary">Envoyer</button>
       </form>
     </div>
-    <div class="col-lg-6">
-      <h1 class="greet-heading">My Contact Details</h1>
-      <div class="details">
-        <h5 class="contact-heading">EMAIL</h5>
-        <p class="contact-text">example@gmail.com</p>
+    <div class="col-md-4 py-lg-4 pe-lg-5">
+      <div class="mt-3">
+        <h1 class="greet-heading">Mes coordonnées</h1>
       </div>
       <div class="details">
-        <h5 class="contact-heading">PHONE</h5>
-        <p class="contact-text">+91 0123456789</p>
+        
+        <p class="contact-text"><svg width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+           pierre-paul@gmail.com</p>
       </div>
       <div class="details">
-        <h5 class="contact-heading">FAX</h5>
-        <p class="contact-text">+91 0123456789</p>
+        <p class="contact-text">
+          <svg width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M80 0C44.7 0 16 28.7 16 64l0 384c0 35.3 28.7 64 64 64l224 0c35.3 0 64-28.7 64-64l0-384c0-35.3-28.7-64-64-64L80 0zm80 432l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg> 
+          +91 0123456789</p>
       </div>
       <div class="details">
-        <h5 class="contact-heading">ADDRESS</h5>
-        <p class="contact-text">San Francisco, CA</p>
+        <p class="contact-text"><svg width="20" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"></path></svg> San Francisco, CA</p>
         <p>4th Floor8 Lower</p>
         <p>San Francisco street, M1 50F</p>
       </div>
     </div>
 
   </section>
-
-  <!-- Footer section -->
-  <footer class="footer">
-    <div class="footer-content text-center">
-      <h4>
-
-      </h4>
-      <div class="social-links">
-        <div class="footer-menu">
-          <ul class="footer-menu-list">
-            <li class="footer-list-items">
-              <a class="footer-links" href="#">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li>
-            <li class="footer-list-items">
-              <a class="footer-links" href="#">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li>
-            <li class="footer-list-items">
-              <a class="footer-links" href="#">
-                <i class="fab fa-instagram"></i>
-              </a>
-            </li>
-            <li class="footer-list-items">
-              <a class="footer-links" href="#">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+</div>
+  <footer class="blog-footer d-flex flex-wrap justify-content-between align-items-center py-5 mt-4 border-top">
+    <div class="col-md-4 d-flex align-items-center ms-1">
+      <small class="mb-3 mb-md-0 text-muted">Site design & code © 2024 Pierre&#8209;Paul&nbsp;T.
+      </small>
     </div>
+    <ul class="contact nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li><a href="https://github.com/pptacher" target="_blank"><svg fill="currentColor" width="28" height="28"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+            <path
+              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+          </svg><span> Github</span></a></li>
+    </ul>
   </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
-    integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer">
-    </script>
   <script src="js/index.js"></script>
 </body>
 
